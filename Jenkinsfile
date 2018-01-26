@@ -11,5 +11,10 @@ pipeline {
         build '/DevOps/build'
       }
     }
+    stage('finish') {
+      steps {
+        echo 'finish'
+      }
+    }
   }
 }
