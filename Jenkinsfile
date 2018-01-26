@@ -11,7 +11,7 @@ pipeline {
         build job: 'DevOps/build'
       }
     }
-    stage('完成') {
+    stage('finish') {
       steps {
         echo 'finish'
       }
