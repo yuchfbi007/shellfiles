@@ -8,7 +8,7 @@ pipeline {
     }
     stage('build') {
       steps {
-        build '/DevOps/build'
+        build job: 'DevOps/build'
       }
     }
     stage('finish') {
