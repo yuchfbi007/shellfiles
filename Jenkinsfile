@@ -6,5 +6,10 @@ pipeline {
         echo 'hello'
       }
     }
+    stage('build') {
+      steps {
+        build(job: 'build', wait: true)
+      }
+    }
   }
 }
