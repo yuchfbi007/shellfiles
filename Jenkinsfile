@@ -8,7 +8,7 @@ pipeline {
     }
     stage('build') {
       steps {
-        build(job: 'DevOps/build', wait: true)
+        build '/DevOps/build'
       }
     }
   }
