@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rancher-server:
+    #env_file: rancher.env
+    container_name: rancher_server
+    image: rancher/server:stable
+    restart: unless-stopped
+    command: --db-host 192.168.12.9 --db-port 3306 --db-name rancher --db-user root --db-pass 12345678
+    environment:
+      CATTLE_DB_LIQUIBASE_MYSQL_URL: ${JDBC_URL}
+      CATTLE_DB_CATTLE_MYSQL_URL: ${JDBC_URL}
+      CATTLE_DB_CATTLE_GO_PARAMS: "tls=skip-verify"
+    ports:
+      - "8080:8080"

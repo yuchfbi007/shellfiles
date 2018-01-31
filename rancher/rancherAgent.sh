@@ -1,0 +1,1 @@
+nohup docker run --name rancherAgent --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v ~/data/rancher:/var/lib/rancher rancher/agent:v1.2.9 http://192.168.12.9:8080/v1/scripts/F37AE8B7BAEE5C6B7C18:1514678400000:JgqUOEBRBPtwLOsVMUIOIf2oag > rancherAgent.log 2>&1 &
