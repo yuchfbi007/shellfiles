@@ -5,6 +5,7 @@ services:
     restart: always
     ports:
       - "3306:3306"
+    command: --max_allowed_packet=32505856 
     environment:
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=jiradb
