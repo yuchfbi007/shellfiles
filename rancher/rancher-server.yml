@@ -2,13 +2,15 @@ version: '3'
 services:
   rancher-server:
     #env_file: rancher.env
-    container_name: rancher_server
+    container_name: rancher-server
     image: rancher/server:stable
     restart: unless-stopped
-    command: --db-host 192.168.12.9 --db-port 3306 --db-name rancher --db-user root --db-pass 12345678
+    command: --db-host ${MYSQL_IP} --db-port ${MYSQL_PORT} --db-name rancher --db-user root --db-pass ${MYSQL_PASS}
     environment:
-      CATTLE_DB_LIQUIBASE_MYSQL_URL: ${JDBC_URL}
-      CATTLE_DB_CATTLE_MYSQL_URL: ${JDBC_URL}
+      CATTLE_DB_LIQUIBASE_MYSQL_URL: jdbc:mysql://${MYSQL_IP}:${MYSQL_PORT}/rancher?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&prepStmtCacheSize=517&cachePrepStmts=true&prepStmtCacheSqlLimit=4096&socketTimeout=60000&connectTimeout=60000
+      CATTLE_DB_CATTLE_MYSQL_URL: jdbc:mysql://${MYSQL_IP}:${MYSQL_PORT}/rancher?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&prepStmtCacheSize=517&cachePrepStmts=true&prepStmtCacheSqlLimit=4096&socketTimeout=60000&connectTimeout=60000
       CATTLE_DB_CATTLE_GO_PARAMS: "tls=skip-verify"
+      CATTLE_CATALOG_URL: '{"catalogs":{"community":{"url":"http://192.168.12.11:3000/devops/community-catalog.git","branch":"master"},"library":{"url":"http://192.168.12.11:3000/devops/rancher-catalog.git","branch":"master"}}}'
     ports:
       - "8080:8080"
+
